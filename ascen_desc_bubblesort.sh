@@ -46,6 +46,7 @@ then
 	 done
 	 echo ${arr[@]:1}
     fi
+    
 fi
 	
 
