@@ -1,5 +1,8 @@
 #!/bin/bash
 <<doc
+
+Ascending and descending using bubble sort
+
 Name :
 Date :
 Description :
