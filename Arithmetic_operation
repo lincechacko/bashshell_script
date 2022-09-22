@@ -1,0 +1,59 @@
+#!/bin/bash
+if [ $# -gt 0 ] #check any elements are there
+then
+    num=$1 #storing the value
+    n=${num: -1} #storing the operator in a variable
+    len=${#num} 
+    limit=$(($len-2)) #storing the limit for loop in a variable
+
+    case $n in 
+	+)
+	    sum=0 #declaring a variable
+	    for i in `seq 0 1 $limit`
+	    do
+		a=${num:$i:1}
+		sum=$(($sum+$a)) #adding the values and storing in the variable
+	    done
+	    echo "Sum of digits = "$sum #printing the sum
+	    ;;
+
+	-)
+	    sub=${num:0:1} 
+	    for j in `seq $limit`
+	    do
+		b=${num:$j:1}
+		sub=$(($sub-$b)) #subtracting the values and storing in the variable
+	    done
+	    echo "Subtraction of digits = " $sub
+	    ;;
+
+
+	/)
+	    div=${num:0:1}
+	    for i in `seq $limit`
+	    do
+		c=${num:i:1}
+		div=`echo "scale=2;$div/$c"|bc` #dividing the values and storing in the variable
+	    done
+	    echo "Division of digits = " $div
+	    ;;
+
+	x)
+	    mul=${num:0:1}
+	    for j in `seq $limit`
+	    do
+		d=${num:$j:1}
+		mul=$(($mul*$d)) #multiplying the values and storing in the variable
+	    done
+	    echo "Multiplication of digits = " $mul
+	    ;;
+
+	*)
+	    echo "Error: Operator missing or invalid operator, please pass operator as last digit (+,-,x,/)"
+
+    esac
+else
+    echo "Error : Please pass the arguments through CL."
+    echo "Usage : ./operator_dependent.sh 2345+"
+fi
+
