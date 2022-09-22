@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ $# -gt 0 ] #check the command line arguments
+then
+    for i in $@ 
+    do 
+	if [ -d $i ] #checking the directory
+	then
+	    cd $i #change it to the current directory
+	    echo `pwd` #print the present working directory
+	    echo * #print the conent in the present working directory
+	else
+	    echo "Cannot access $i : No such a file or directory."
+	fi
+   done
+else
+    echo *
+fi
