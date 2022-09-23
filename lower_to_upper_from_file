@@ -1,0 +1,31 @@
+#!/bin/bash
+if [ $# -gt 0 ]
+then
+    if [ -f $1 ]
+    then
+	if [ -s $1 ]
+	then
+	    echo "1 – Lower to upper"
+	    echo "2 – Upper to lower"
+	    read -p "Please select option : " m
+
+	    case $m in 
+		1)
+		   echo "`cat $1`" | tr a-z A-Z
+		    ;;
+		2)
+		    echo "`cat $1`" | tr A-Z a-z
+		    ;;
+		*)
+		    echo error
+		    ;;
+	    esac
+	else
+	    echo "Error: No contents inside the file."
+	fi
+    else
+	echo "File not found"
+    fi
+else
+    echo "Error : Please pass the file name through command line."
+fi 
