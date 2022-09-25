@@ -1,0 +1,22 @@
+#!/bin/bash
+function rec
+{
+    echo $1
+    arr=($@)
+    len=${#arr[@]}
+    if [ $len -gt 1 ]
+    then
+	last=$(($#-1))
+	arr=(${arr[@]:1:$last})
+	rec ${arr[@]}
+    else
+    return
+    fi
+}
+if [ $# -gt 0 ]
+then
+    rec $@
+else
+    echo "Error : Pass the arguments through command line."
+fi
+
