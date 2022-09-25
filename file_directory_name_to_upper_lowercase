@@ -1,0 +1,18 @@
+#!/bin/bash
+for i in echo * #collecting all the contents from the current working directory
+do
+    if [ -d $i ] #checking wheather it is a directory 
+    then
+	new=`echo $i | tr a-z A-Z` #changing the directory name from lowercase to upper case 
+	mv $i $new
+    elif [ -f $i ] #cheching wheather it is a file
+    then
+	new=`echo $i | tr A-Z a-z` #changing the file name from uppercase to lowercase
+	if [ $new != $i ]  #checking the changed name is equal to orginal name
+ 	then
+	    mv $i $new
+	fi
+
+    fi
+echo "Files are rename in lowercase and directories are renamed in upper case"    
+done
