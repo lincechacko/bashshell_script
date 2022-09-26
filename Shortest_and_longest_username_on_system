@@ -1,0 +1,33 @@
+#!/bin/bash
+<<doc
+Description :Display the longest and shortest user-names on the system
+Sample input :
+sample output :
+The Longest Name is: nvidia-persistenced
+The Shortest Name is: lp
+doc
+
+usr=(`cat /etc/passwd | cut -d ":" -f1`) #storing the user name in a array
+large=${usr[0]} #making the largest username as the first username
+small=${usr[0]} #making the shortst username as the first user name
+large_len=${#usr[0]} #storing the length of the large username we stored
+small_len=${#usr[0]} #storing the length of the short username we stored
+for i in ${usr[@]} #for loop inside the userid
+do
+    len=${#i} #finding the length from the loop
+
+    if [ $len -gt $large_len ] #comparing the two lenght for largest length
+    then
+	
+	large=${i} #making it as the largest
+	large_len=$len #changing the value of large lenth
+
+    fi
+    if [ $len -lt $small_len ] #comparing the two length for shortest length
+    then
+	small=${i} #making it as  the shortest
+	small_len=$len #changing the value of small length
+    fi
+done
+echo "The Longest Name is: $large"
+echo "The Shortest Name is: $small"
