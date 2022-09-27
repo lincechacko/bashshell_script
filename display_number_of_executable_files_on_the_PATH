@@ -1,0 +1,48 @@
+#!/bin/bash
+<<doc
+Description :For each directory in the $PATH, display the number of executable files in that directory
+Sample input :
+sample output :
+
+Current dir: /usr/local/sbin
+current count: 0
+Current dir: /usr/local/bin
+current count: 0
+Current dir: /usr/sbin
+current count: 205
+Current dir: /usr/bin
+current count: 1889
+Current dir: /sbin
+current count: 187
+Current dir: /bin
+current count: 159
+Current dir: /usr/games
+current count: 5
+Current dir: /usr/local/games
+current count: 0
+Total – 2445
+
+
+doc
+
+total=0 #declaring a variable total as zero
+arr=(`echo $PATH | tr ":" " "`) #storing the value of path in an array
+for i in ${arr[@]} #doing for loop through that array
+do
+    count=0 #declaring a variable count as zero
+    if [ -d $i ] #checking wheather it is directory or not
+    then
+	cd $i #changing the directory
+	for j in `ls` #taking for loop through all the files  
+	do
+	    if [ -x $j ] #check wheather it is executable
+	    then
+		count=$(($count+1)) #incrementing the count value
+	    fi
+	done
+	echo "Current dir : $i"	
+	echo "current count : $count"
+    fi
+    total=$(($total+$count)) #incrementing the total value
+done
+echo "Total - $total"
