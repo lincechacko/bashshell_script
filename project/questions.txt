@@ -1,0 +1,10 @@
+1.Indias capital is in
+a.delhi
+b.kerala
+c.bihar
+d.assam
+2.national animal of India
+a.tiger
+b.lion
+c.peacock
+d.deer
